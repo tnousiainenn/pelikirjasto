@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Poista kuvaus</title>
+</head>
+
+<body>
+  <h1>Poista kuvaus</h1>
+  <p>Haluatko poistaa tämän kuvauksen: {{post.title}}</p>
+  <form action="/removepost/{{ post.id }}" method="post">
+    <input type="submit" name="remove" value="Poista">
+    <input type="submit" name="back" value="Palaa takaisin">
+
+  </form>
+</body>
+
+</html>

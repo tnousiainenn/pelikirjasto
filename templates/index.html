@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pelikirjasto</title>
+</head>
+
+<body>
+  <h1>Pelikirjasto</h1>
+
+  {% if session.username %}
+  <p>
+    Olet kirjautunut nimellä {{ session.username }} userid: {{ session.user_id}}
+  </p>
+  <p>
+    <a href=/newpost> Lisää pelin kuvaus </a>
+    <a href=/findpost> Etsi kuvaus </a>
+    <a href=/logout> Kirjaudu ulos </a>
+  </p>
+
+  {% else %}
+  <p>
+   Et ole kirjautunut
+  </p>
+  <p>
+   <a href=/login> Kirjaudu sisään </a>
+   <a href=/register> Luo tunnus </a>
+  </p>
+
+  {% endif %}
+
+  <h2>Pelit</h2>
+
+  <ul>
+    {% for post in posts %}
+    <li><a href="/post/{{ post.id }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>

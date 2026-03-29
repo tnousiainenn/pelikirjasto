@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ post.title}}</title>
+</head>
+
+<body>
+  <h1>{{ post.title}}</h1>
+
+  {% if session.user_id == post.user_id %}
+  <p>
+    <a href="/editpost/{{ post.id }}">Muokkaa kuvausta</a>
+    <a href="/removepost/{{ post.id }}">Poista kuvaus</a>
+  </p>
+  {% endif %}
+
+
+  <p>
+  Kuvauksen lähettäjä: {{ post.username }}
+  </p>
+
+  <p>
+  Pelin luokitus/genre: {{ post.genre }}
+  </p>
+
+  <p>
+  Pelin kuvaus: {{ post.description }}
+  </p>
+
+  <p>
+  <a href="/">Takaisin etusivulle</a>
+  </p>
+
+
+</body>
+
+</html>
