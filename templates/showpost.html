@@ -6,7 +6,7 @@
 </head>
 
 <body>
-  <h1>{{ post.title}}</h1>
+  <h1>{{ post.title}} {{ averagerating }}/10&#9733;</h1>
 
   {% if session.user_id == post.user_id %}
   <p>
@@ -17,11 +17,13 @@
 
 
   <p>
-  Kuvauksen lähettäjä: {{ post.username }}
+  Kuvauksen lähettäjä: <a href="/user/{{post.user_id}}">{{ post.username }} </a>
   </p>
 
   <p>
-  Pelin luokitus/genre: {{ post.genre }}
+  {% for class in classes %}
+  {{ class.title }}: {{ class.value }}
+  {% endfor %}
   </p>
 
   <p>
@@ -29,8 +31,23 @@
   </p>
 
   <p>
+  <a href="/comment/{{ post.id }}">Kommentoi/arvioi pelin kuvausta</a>
+  </p>
+
+  <p>
   <a href="/">Takaisin etusivulle</a>
   </p>
+
+  {% if post_comments %}
+  <p>
+  <h2>Kommentit:</h2>
+  <ul>
+    {% for comment in post_comments %}
+    <li>{{ comment.comment }} Arvio: {{ comment.rating }}</li>
+    {% endfor %}
+  </ul>
+  </p>
+  {% endif %}
 
 
 </body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Kommentti postaukseen {{ post.title }}</title>
+</head>
+
+<body>
+  <h1>Kommentti postaukseen {{ post.title }}</h1>
+  <form action="/createcomment" method="post">
+    <p>
+      Arvio 0-10: <br />
+      <input type="text" name="rating" maxlength="2" required />
+    </p>
+
+    <p>
+      Kommentti: <br />
+      <textarea name="comment" rows="5" cols="45" maxlength="1000" required ></textarea>
+    </p>
+    <input type="hidden" name="post_id" value="{{ post.id }}" />
+    <input type="submit" value="Jätä kommentti/arvio" />
+  </form>
+</body>
+
+</html>
