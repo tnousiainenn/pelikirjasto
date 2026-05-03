@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = config.secret_key
 
 
-def checklogin():
+def check_login():
     if "user_id" not in session:
         abort(403)
 
@@ -26,7 +26,7 @@ def index():
     return render_template("index.html", posts=all_posts)
 
 @app.route("/findpost")
-def findpost():
+def find_post():
     query = request.args.get("query")
     if query:
         result = posts.find_post(query)
@@ -39,11 +39,11 @@ def findpost():
 def show_post(post_id):
     post = posts.get_post(post_id)
     post_comments = comments.get_comments(post_id)
-    averagerating = comments.average_rating(post_id)
+    average_rating = comments.average_rating(post_id)
     if not post:
         abort(404)
     classes = posts.get_classes(post_id)
-    return render_template("showpost.html", post=post, classes=classes, post_comments=post_comments, averagerating=averagerating)
+    return render_template("showpost.html", post=post, classes=classes, post_comments=post_comments, average_rating=average_rating)
 
 @app.route("/user/<int:user_id>")
 def show_user(user_id):
@@ -59,7 +59,7 @@ def show_user(user_id):
 
 @app.route("/comment/<int:post_id>")
 def comment(post_id):
-    checklogin()
+    check_login()
     post = posts.get_post(post_id)
     if not post:
         abort(404)
@@ -67,8 +67,8 @@ def comment(post_id):
     return render_template("comment.html", post=post)
 
 @app.route("/createcomment", methods=["POST"])
-def createcomment():
-    checklogin()
+def create_comment():
+    check_login()
     check_csrf()
     commenter_id = session["user_id"]
     post_id = request.form["post_id"]
@@ -86,8 +86,8 @@ def createcomment():
     return redirect("/post/" + str(post_id))
 
 @app.route("/removecomment/<int:post_id>/<int:comment_id>", methods=["GET", "POST"])
-def removecomment(post_id, comment_id):
-    checklogin()
+def remove_comment(post_id, comment_id):
+    check_login()
     comment = comments.get_comment(comment_id)
     post = posts.get_post(post_id)
     if not comment:
@@ -112,14 +112,14 @@ def removecomment(post_id, comment_id):
 
 
 @app.route("/newpost")
-def newpost():
-    checklogin()
+def new_post():
+    check_login()
     classes = posts.get_all_classes()
     return render_template("newpost.html", classes=classes)
 
 @app.route("/createpost", methods=["POST"])
-def createpost():
-    checklogin()
+def create_post():
+    check_login()
     check_csrf()
     title = request.form["title"]
     if not title or len(title) > 80:
@@ -146,8 +146,8 @@ def createpost():
     return redirect("/")
 
 @app.route("/editpost/<int:post_id>")
-def editpost(post_id):
-    checklogin()
+def edit_post(post_id):
+    check_login()
     post = posts.get_post(post_id)
     if not post:
         abort(404)
@@ -163,8 +163,8 @@ def editpost(post_id):
     return render_template("editpost.html", post=post, classes=classes, all_classes=all_classes)
 
 @app.route("/updatepost", methods=["POST"])
-def updatepost():
-    checklogin()
+def update_post():
+    check_login()
     check_csrf()
     post_id = request.form["post_id"]
     title = request.form["title"]
@@ -196,8 +196,8 @@ def updatepost():
     return redirect("/post/" + str(post_id))
 
 @app.route("/removepost/<int:post_id>", methods=["GET", "POST"])
-def removepost(post_id):
-    checklogin()
+def remove_post(post_id):
+    check_login()
     post = posts.get_post(post_id)
     if not post:
         abort(404)
