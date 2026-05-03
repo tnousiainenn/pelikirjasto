@@ -4,6 +4,7 @@ from flask import redirect, render_template, request, session, abort, flash
 import db
 import config
 import posts, users, comments
+import secrets
 
 
 app = Flask(__name__)
@@ -12,6 +13,10 @@ app.secret_key = config.secret_key
 
 def checklogin():
     if "user_id" not in session:
+        abort(403)
+
+def check_csrf():
+    if request.form["csrf_token"] != session["csrf_token"]:
         abort(403)
 
 
@@ -64,7 +69,7 @@ def comment(post_id):
 @app.route("/createcomment", methods=["POST"])
 def createcomment():
     checklogin()
-
+    check_csrf()
     commenter_id = session["user_id"]
     post_id = request.form["post_id"]
     rating = request.form["rating"]
@@ -87,6 +92,7 @@ def newpost():
 @app.route("/createpost", methods=["POST"])
 def createpost():
     checklogin()
+    check_csrf()
     title = request.form["title"]
     if not title or len(title) > 80:
         abort(403)
@@ -131,6 +137,7 @@ def editpost(post_id):
 @app.route("/updatepost", methods=["POST"])
 def updatepost():
     checklogin()
+    check_csrf()
     post_id = request.form["post_id"]
     title = request.form["title"]
     if not title or len(title) > 80:
@@ -172,6 +179,7 @@ def removepost(post_id):
         return render_template("removepost.html", post=post)
 
     if request.method == "POST":
+        check_csrf()
         if "remove" in request.form:
             posts.remove_post(post_id)
             return redirect("/")
@@ -227,6 +235,7 @@ def login():
         if user_id:
             session["user_id"] = user_id
             session["username"] = username
+            session["csrf_token"] = secrets.token_hex(16)
             return redirect("/")
         else:
             flash("VIRHE: väärä tunnus tai salasana")
