@@ -75,6 +75,9 @@ def createcomment():
     rating = request.form["rating"]
     comment = request.form["comment"]
 
+    if int(rating) > 10 or int(rating) < 0:
+        abort(403)
+
     comments.add_comment(commenter_id, post_id, rating, comment)
 
     return redirect("/post/" + str(post_id))
