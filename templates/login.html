@@ -4,6 +4,7 @@
 <head>
   <title>Kirjautuminen</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
   {% for message in get_flashed_messages() %}
@@ -11,6 +12,7 @@
     {{ message }}
   </div>
   {% endfor %}
+  <div class="content">
   {% if session.username %}
   <p>
     Olet kirjautunut nimellä {{ session.username }}
@@ -31,6 +33,7 @@
     <input type="submit" value="Kirjaudu" />
   </form>
   {% endif %}
+  </div>
 </body>
 
 </html>

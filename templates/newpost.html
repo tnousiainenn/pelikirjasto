@@ -4,9 +4,13 @@
 <head>
   <title>Uusi kuvaus</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>Uusi kuvaus</h1>
+  </div>
+  <div class="content">
   <form action="/createpost" method="post">
     <p>
       Pelin nimi: <br />
@@ -34,6 +38,7 @@
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
     <input type="submit" value="Lähetä kuvaus" />
   </form>
+  </div>
 </body>
 
 </html>

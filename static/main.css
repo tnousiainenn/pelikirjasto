@@ -1,0 +1,42 @@
+body {
+  margin: auto;
+  max-width: 50em;
+  font-family: sans-serif;
+  background-color: black;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+a {
+  color: lime;
+  font-weight: bold;
+}
+
+a:hover {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.header {
+  border: 2px solid lime;
+  margin: 1em;
+  font-family: "Courier New";
+  padding: 0.5em;
+  background-color: black;
+  color: lime;
+}
+
+.content {
+  color: white;
+}
+
+.info {
+  border: 2px solid lime;
+  margin: 1em;
+  font-family: "Courier New";
+  padding: 0.5em;
+  background-color: black;
+  color: lime;
+}

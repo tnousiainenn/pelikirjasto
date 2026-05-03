@@ -4,10 +4,14 @@
 <head>
   <title>{{ post.title}}</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>{{ post.title}} {{ averagerating }}/10&#9733;</h1>
+  </div>
 
+  <div class="content">
   {% if session.user_id == post.user_id %}
   <p>
     <a href="/editpost/{{ post.id }}">Muokkaa kuvausta</a>
@@ -48,7 +52,7 @@
   </ul>
   </p>
   {% endif %}
-
+  </div>
 
 </body>
 

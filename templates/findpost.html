@@ -4,10 +4,14 @@
 <head>
   <title>Etsi kuvaus</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>Etsi kuvaus</h1>
+  </div>
 
+  <div class="content">
   <form action="/findpost" method="get">
   <p>
   Hakusana: <input type="text" name="query" value="{{ query }}">
@@ -30,6 +34,7 @@
   <p>
   <a href="/">Takaisin etusivulle</a>
   </p>
+  </div>
 
 </body>
 

@@ -4,10 +4,13 @@
 <head>
   <title>Käyttäjä {{ user.username }}</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>Käyttäjä {{ user.username }}</h1>
-
+  </div>
+  <div class="content">
   <p>
       Käyttäjä on kirjoittanut yhteensä {{ posts | count }} pelin kuvausta.
   </p>
@@ -26,7 +29,7 @@
   <p>
   <a href="/">Takaisin etusivulle</a>
   </p>
-
+  </div>
 
 </body>
 

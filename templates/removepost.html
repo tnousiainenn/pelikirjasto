@@ -4,9 +4,13 @@
 <head>
   <title>Poista kuvaus</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>Poista kuvaus</h1>
+  </div>
+  <div class="content">
   <p>Haluatko poistaa tämän kuvauksen: {{post.title}}</p>
   <form action="/removepost/{{ post.id }}" method="post">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
@@ -14,6 +18,7 @@
     <input type="submit" name="back" value="Palaa takaisin">
 
   </form>
+  </div>
 </body>
 
 </html>

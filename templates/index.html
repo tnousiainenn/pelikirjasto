@@ -4,6 +4,8 @@
 <head>
   <title>Pelikirjasto</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
+
 
 <body>
   {% for message in get_flashed_messages() %}
@@ -11,8 +13,11 @@
     {{ message }}
   </div>
   {% endfor %}
+  <div class="header">
   <h1>Pelikirjasto</h1>
+  </div>
 
+  <div class="content">
   {% if session.username %}
   <p>
     Olet kirjautunut nimellä <a href="/user/{{ session.user_id }}">{{ session.username }}</a>
@@ -42,6 +47,7 @@
     <li><a href="/post/{{ post.id }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
+  </div>
 </body>
 
 </html>

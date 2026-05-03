@@ -4,9 +4,13 @@
 <head>
   <title>Kommentti postaukseen {{ post.title }}</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
+  <div class="header">
   <h1>Kommentti postaukseen {{ post.title }}</h1>
+  </div>
+  <div class="content">
   <form action="/createcomment" method="post">
     <p>
       Arvio 0-10: <br />
@@ -21,6 +25,7 @@
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
     <input type="submit" value="Jätä kommentti/arvio" />
   </form>
+  </div>
 </body>
 
 </html>

@@ -4,6 +4,7 @@
 <head>
   <title>Rekisteröinti</title>
 </head>
+<link rel="stylesheet" href="/static/main.css">
 
 <body>
   {% for message in get_flashed_messages() %}
@@ -11,6 +12,7 @@
     {{ message }}
   </div>
   {% endfor %}
+  <div class="content">
   <form action="/create" method="post">
     <p>
       Tunnus: <br />
@@ -26,6 +28,7 @@
     </p>
     <input type="submit" value="Luo tunnus" />
   </form>
+  </div>
 </body>
 
 </html>
