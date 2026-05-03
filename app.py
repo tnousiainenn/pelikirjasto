@@ -75,6 +75,9 @@ def createcomment():
     rating = request.form["rating"]
     comment = request.form["comment"]
 
+
+    if not rating.isdigit():
+        abort(403)
     if int(rating) > 10 or int(rating) < 0:
         abort(403)
 
