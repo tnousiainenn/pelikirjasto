@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Poista kommentti</title>
+</head>
+
+<body>
+  <h1>Poista kommentti</h1>
+  <p>Haluatko poistaa tämän kommentin/arvion: {{comment.comment}} Arvio: {{comment.rating}}</p>
+  <form action="/removecomment/{{ post.id }}/{{ comment.id }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
+    <input type="submit" name="remove" value="Poista">
+    <input type="submit" name="back" value="Palaa takaisin">
+
+  </form>
+</body>
+
+</html>

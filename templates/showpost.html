@@ -43,7 +43,7 @@
   <h2>Kommentit:</h2>
   <ul>
     {% for comment in post_comments %}
-    <li>{{ comment.comment }} Arvio: {{ comment.rating }}</li>
+    <li>{{ comment.comment }} Arvio: {{ comment.rating }} <a href="/removecomment/{{ post.id }}/{{ comment.id }}">Poista kommentti</a></li>
     {% endfor %}
   </ul>
   </p>

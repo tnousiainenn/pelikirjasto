@@ -79,6 +79,28 @@ def createcomment():
 
     return redirect("/post/" + str(post_id))
 
+@app.route("/removecomment/<int:post_id>/<int:comment_id>", methods=["GET", "POST"])
+def removecomment(post_id, comment_id):
+    checklogin()
+    comment = comments.get_comment(comment_id)
+    post = posts.get_post(post_id)
+    if not comment:
+        abort(404)
+    if comment["commenter_id"] != session["user_id"]:
+        abort(403)
+
+
+    if request.method == "GET":
+        return render_template("removecomment.html", comment=comment, post=post)
+
+    if request.method == "POST":
+        check_csrf()
+        if "remove" in request.form:
+            comments.remove_comment(comment_id)
+
+        return redirect("/post/" + str(post_id))
+
+
 
 
 
